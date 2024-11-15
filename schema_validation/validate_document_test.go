@@ -50,6 +50,7 @@ func TestValidateDocument_Invalid31(t *testing.T) {
 }
 
 // This is the edge case that fails
+// TODO: Make sure this passes. Would require update to libopenapi to not ignore errors during decoding (if that's safe to do).
 func TestValidateDocument_Invalid3_dupe_op_102(t *testing.T) {
 	petstore, _ := os.ReadFile("../test_specs/final_path_malindent_with_dupe_op_key.yaml")
 
@@ -74,7 +75,6 @@ func TestValidateDocument_Invalid3_dupe_op_102(t *testing.T) {
 // This is another somewhat similar case, but passes decoding and fails validation. This test case is expected, it was me verifying stuff.
 // - yaml/json decoding (libopenapi) shouldn't fail as it's valid (no dupe keys)
 // - openapi validation (this library) should fails because it's invalid spec
-// TODO: Make sure this passes. Would require update to libopenapi to not ignore errors during decoding (if that's safe to do).
 func TestValidateDocument_Invalid3_non_dupe_op_102(t *testing.T) {
 	petstore, _ := os.ReadFile("../test_specs/final_path_malindent_with_non_dupe_op_key.yaml")
 
